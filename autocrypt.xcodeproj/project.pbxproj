@@ -7,20 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C04EF7F3571D2BB74F33903 /* Pods_autocrypt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10E42BD9995D5419A80CBB4 /* Pods_autocrypt.framework */; };
 		BCC5BF49290153970029CE04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF48290153970029CE04 /* AppDelegate.swift */; };
 		BCC5BF4B290153970029CE04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF4A290153970029CE04 /* SceneDelegate.swift */; };
 		BCC5BF4D290153970029CE04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF4C290153970029CE04 /* ViewController.swift */; };
-		BCC5BF50290153970029CE04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCC5BF4E290153970029CE04 /* Main.storyboard */; };
 		BCC5BF52290153980029CE04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCC5BF51290153980029CE04 /* Assets.xcassets */; };
 		BCC5BF55290153980029CE04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCC5BF53290153980029CE04 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		987AAE186F37C74DF682A6C8 /* Pods-autocrypt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autocrypt.release.xcconfig"; path = "Target Support Files/Pods-autocrypt/Pods-autocrypt.release.xcconfig"; sourceTree = "<group>"; };
+		A05CDCE1EC55D9B06424B000 /* Pods-autocrypt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-autocrypt.debug.xcconfig"; path = "Target Support Files/Pods-autocrypt/Pods-autocrypt.debug.xcconfig"; sourceTree = "<group>"; };
+		A10E42BD9995D5419A80CBB4 /* Pods_autocrypt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_autocrypt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCC5BF45290153970029CE04 /* autocrypt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = autocrypt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCC5BF48290153970029CE04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCC5BF4A290153970029CE04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BCC5BF4C290153970029CE04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BCC5BF4F290153970029CE04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BCC5BF51290153980029CE04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCC5BF54290153980029CE04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCC5BF56290153980029CE04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -31,17 +33,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C04EF7F3571D2BB74F33903 /* Pods_autocrypt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6802779A2E3FC40AC3ED3066 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A05CDCE1EC55D9B06424B000 /* Pods-autocrypt.debug.xcconfig */,
+				987AAE186F37C74DF682A6C8 /* Pods-autocrypt.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9E9DBA1EA9D401896E329D60 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A10E42BD9995D5419A80CBB4 /* Pods_autocrypt.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BCC5BF3C290153970029CE04 = {
 			isa = PBXGroup;
 			children = (
 				BCC5BF47290153970029CE04 /* autocrypt */,
 				BCC5BF46290153970029CE04 /* Products */,
+				6802779A2E3FC40AC3ED3066 /* Pods */,
+				9E9DBA1EA9D401896E329D60 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +79,46 @@
 		BCC5BF47290153970029CE04 /* autocrypt */ = {
 			isa = PBXGroup;
 			children = (
-				BCC5BF48290153970029CE04 /* AppDelegate.swift */,
+				BCC5BF5C290154620029CE04 /* App */,
+				BCC5BF5D290154680029CE04 /* Model */,
+				BCC5BF5E2901546C0029CE04 /* View */,
+				BCC5BF5F290154710029CE04 /* ViewModel */,
+			);
+			path = autocrypt;
+			sourceTree = "<group>";
+		};
+		BCC5BF5C290154620029CE04 /* App */ = {
+			isa = PBXGroup;
+			children = (
 				BCC5BF4A290153970029CE04 /* SceneDelegate.swift */,
-				BCC5BF4C290153970029CE04 /* ViewController.swift */,
-				BCC5BF4E290153970029CE04 /* Main.storyboard */,
+				BCC5BF48290153970029CE04 /* AppDelegate.swift */,
 				BCC5BF51290153980029CE04 /* Assets.xcassets */,
 				BCC5BF53290153980029CE04 /* LaunchScreen.storyboard */,
 				BCC5BF56290153980029CE04 /* Info.plist */,
 			);
-			path = autocrypt;
+			path = App;
+			sourceTree = "<group>";
+		};
+		BCC5BF5D290154680029CE04 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BCC5BF5E2901546C0029CE04 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BCC5BF4C290153970029CE04 /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BCC5BF5F290154710029CE04 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +128,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCC5BF59290153980029CE04 /* Build configuration list for PBXNativeTarget "autocrypt" */;
 			buildPhases = (
+				C52757CB6985FFE0F31DE0F4 /* [CP] Check Pods Manifest.lock */,
 				BCC5BF41290153970029CE04 /* Sources */,
 				BCC5BF42290153970029CE04 /* Frameworks */,
 				BCC5BF43290153970029CE04 /* Resources */,
+				F167C6E6A1DE08875A7F4E42 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,11 +183,52 @@
 			files = (
 				BCC5BF55290153980029CE04 /* LaunchScreen.storyboard in Resources */,
 				BCC5BF52290153980029CE04 /* Assets.xcassets in Resources */,
-				BCC5BF50290153970029CE04 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C52757CB6985FFE0F31DE0F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-autocrypt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F167C6E6A1DE08875A7F4E42 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-autocrypt/Pods-autocrypt-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-autocrypt/Pods-autocrypt-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-autocrypt/Pods-autocrypt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BCC5BF41290153970029CE04 /* Sources */ = {
@@ -147,14 +244,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BCC5BF4E290153970029CE04 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BCC5BF4F290153970029CE04 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BCC5BF53290153980029CE04 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,7 +305,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,6 +371,7 @@
 		};
 		BCC5BF5A290153980029CE04 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A05CDCE1EC55D9B06424B000 /* Pods-autocrypt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -292,7 +382,6 @@
 				INFOPLIST_FILE = autocrypt/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -310,6 +399,7 @@
 		};
 		BCC5BF5B290153980029CE04 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 987AAE186F37C74DF682A6C8 /* Pods-autocrypt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -320,7 +410,6 @@
 				INFOPLIST_FILE = autocrypt/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
