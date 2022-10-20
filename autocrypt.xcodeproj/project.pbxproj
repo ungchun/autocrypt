@@ -10,9 +10,14 @@
 		8C04EF7F3571D2BB74F33903 /* Pods_autocrypt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10E42BD9995D5419A80CBB4 /* Pods_autocrypt.framework */; };
 		BCC5BF49290153970029CE04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF48290153970029CE04 /* AppDelegate.swift */; };
 		BCC5BF4B290153970029CE04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF4A290153970029CE04 /* SceneDelegate.swift */; };
-		BCC5BF4D290153970029CE04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF4C290153970029CE04 /* ViewController.swift */; };
+		BCC5BF4D290153970029CE04 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF4C290153970029CE04 /* CenterViewController.swift */; };
 		BCC5BF52290153980029CE04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCC5BF51290153980029CE04 /* Assets.xcassets */; };
 		BCC5BF55290153980029CE04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCC5BF53290153980029CE04 /* LaunchScreen.storyboard */; };
+		BCC5BF62290156420029CE04 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF61290156420029CE04 /* APIService.swift */; };
+		BCC5BF64290157610029CE04 /* CenterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF63290157610029CE04 /* CenterListTableViewCell.swift */; };
+		BCC5BF662901578A0029CE04 /* CenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF652901578A0029CE04 /* CenterViewModel.swift */; };
+		BCC5BF6829015A9D0029CE04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF6729015A9D0029CE04 /* DetailViewController.swift */; };
+		BCC5BF6A29015ABB0029CE04 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF6929015ABB0029CE04 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +27,15 @@
 		BCC5BF45290153970029CE04 /* autocrypt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = autocrypt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCC5BF48290153970029CE04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCC5BF4A290153970029CE04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BCC5BF4C290153970029CE04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BCC5BF4C290153970029CE04 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		BCC5BF51290153980029CE04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCC5BF54290153980029CE04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCC5BF56290153980029CE04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCC5BF61290156420029CE04 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		BCC5BF63290157610029CE04 /* CenterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterListTableViewCell.swift; sourceTree = "<group>"; };
+		BCC5BF652901578A0029CE04 /* CenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewModel.swift; sourceTree = "<group>"; };
+		BCC5BF6729015A9D0029CE04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BCC5BF6929015ABB0029CE04 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +56,6 @@
 				A05CDCE1EC55D9B06424B000 /* Pods-autocrypt.debug.xcconfig */,
 				987AAE186F37C74DF682A6C8 /* Pods-autocrypt.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -79,6 +88,7 @@
 		BCC5BF47290153970029CE04 /* autocrypt */ = {
 			isa = PBXGroup;
 			children = (
+				BCC5BF602901562E0029CE04 /* Repository */,
 				BCC5BF5C290154620029CE04 /* App */,
 				BCC5BF5D290154680029CE04 /* Model */,
 				BCC5BF5E2901546C0029CE04 /* View */,
@@ -109,7 +119,10 @@
 		BCC5BF5E2901546C0029CE04 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BCC5BF4C290153970029CE04 /* ViewController.swift */,
+				BCC5BF4C290153970029CE04 /* CenterViewController.swift */,
+				BCC5BF63290157610029CE04 /* CenterListTableViewCell.swift */,
+				BCC5BF6729015A9D0029CE04 /* DetailViewController.swift */,
+				BCC5BF6929015ABB0029CE04 /* MapViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -117,8 +130,17 @@
 		BCC5BF5F290154710029CE04 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BCC5BF652901578A0029CE04 /* CenterViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BCC5BF602901562E0029CE04 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				BCC5BF61290156420029CE04 /* APIService.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,9 +257,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCC5BF4D290153970029CE04 /* ViewController.swift in Sources */,
+				BCC5BF64290157610029CE04 /* CenterListTableViewCell.swift in Sources */,
+				BCC5BF4D290153970029CE04 /* CenterViewController.swift in Sources */,
+				BCC5BF62290156420029CE04 /* APIService.swift in Sources */,
+				BCC5BF662901578A0029CE04 /* CenterViewModel.swift in Sources */,
 				BCC5BF49290153970029CE04 /* AppDelegate.swift in Sources */,
 				BCC5BF4B290153970029CE04 /* SceneDelegate.swift in Sources */,
+				BCC5BF6829015A9D0029CE04 /* DetailViewController.swift in Sources */,
+				BCC5BF6A29015ABB0029CE04 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +406,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F92UQYH2RA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = autocrypt/Info.plist;
+				INFOPLIST_FILE = /Users/sunghun/Documents/GitHub/autocrypt/autocrypt/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -407,7 +434,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F92UQYH2RA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = autocrypt/Info.plist;
+				INFOPLIST_FILE = /Users/sunghun/Documents/GitHub/autocrypt/autocrypt/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
