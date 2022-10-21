@@ -18,6 +18,7 @@
 		BCC5BF662901578A0029CE04 /* CenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF652901578A0029CE04 /* CenterViewModel.swift */; };
 		BCC5BF6829015A9D0029CE04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF6729015A9D0029CE04 /* DetailViewController.swift */; };
 		BCC5BF6A29015ABB0029CE04 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF6929015ABB0029CE04 /* MapViewController.swift */; };
+		BCE14EEA29024AD4003237D9 /* CenterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE14EE929024AD4003237D9 /* CenterData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		BCC5BF652901578A0029CE04 /* CenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewModel.swift; sourceTree = "<group>"; };
 		BCC5BF6729015A9D0029CE04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BCC5BF6929015ABB0029CE04 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		BCE14EE929024AD4003237D9 /* CenterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		BCC5BF5D290154680029CE04 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BCE14EE929024AD4003237D9 /* CenterData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				BCC5BF4D290153970029CE04 /* CenterViewController.swift in Sources */,
 				BCC5BF62290156420029CE04 /* APIService.swift in Sources */,
 				BCC5BF662901578A0029CE04 /* CenterViewModel.swift in Sources */,
+				BCE14EEA29024AD4003237D9 /* CenterData.swift in Sources */,
 				BCC5BF49290153970029CE04 /* AppDelegate.swift in Sources */,
 				BCC5BF4B290153970029CE04 /* SceneDelegate.swift in Sources */,
 				BCC5BF6829015A9D0029CE04 /* DetailViewController.swift in Sources */,
