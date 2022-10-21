@@ -14,6 +14,7 @@ class CenterViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private let viewModel: CenterViewModel
+    private let refreshControl = UIRefreshControl()
     
     init(viewModel: CenterViewModel = CenterViewModel()) {
         self.viewModel = viewModel
@@ -30,6 +31,7 @@ class CenterViewController: UIViewController {
         
         
         tableView.register(CenterListTableViewCell.self, forCellReuseIdentifier: CenterListTableViewCell.reuseIdentifier)
+        tableView.refreshControl = refreshControl
         tableView.rowHeight = 100
         
         view.addSubview(tableView)
@@ -47,6 +49,15 @@ class CenterViewController: UIViewController {
                 cell.updateAtContent.text = item.updatedAt
                 cell.selectionStyle = .none
             }.disposed(by: disposeBag)
+        
+        
+        // 테이블 뷰 위로 새로고침
+        refreshControl.rx.controlEvent(.valueChanged)
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: { [weak self] _ in
+                self?.viewModel.refreshData()
+                self?.refreshControl.endRefreshing()
+            }).disposed(by: disposeBag)
         
         // tableView cell 클릭
         tableView
