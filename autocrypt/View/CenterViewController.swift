@@ -16,6 +16,21 @@ class CenterViewController: UIViewController {
     private let viewModel: CenterViewModel
     private let refreshControl = UIRefreshControl()
     
+    private let scrollToTopButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "top-alignment.png"), for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 30
+        button.clipsToBounds = true
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.masksToBounds = false
+        button.layer.shadowOffset = CGSize(width: 10, height: 10)
+        button.layer.shadowRadius = 5
+        button.layer.shadowOpacity = 0.3
+        return button
+    }()
+    
     init(viewModel: CenterViewModel = CenterViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -28,7 +43,7 @@ class CenterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        
+
         
         tableView.register(CenterListTableViewCell.self, forCellReuseIdentifier: CenterListTableViewCell.reuseIdentifier)
         tableView.refreshControl = refreshControl
@@ -38,6 +53,19 @@ class CenterViewController: UIViewController {
         tableView.snp.makeConstraints {
             $0.top.bottom.left.right.equalToSuperview()
         }
+        
+        view.addSubview(scrollToTopButton)
+        scrollToTopButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-30)
+            make.bottom.equalToSuperview().offset(-60)
+            make.width.height.equalTo(60)
+        }
+        scrollToTopButton.rx.tap
+            .bind { [weak self] in
+                let indexPath = IndexPath(row: 0, section: 0)
+                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
+            .disposed(by: disposeBag)
         
         // binding
         viewModel.centerObservable
