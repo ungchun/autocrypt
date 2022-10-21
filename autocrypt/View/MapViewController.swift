@@ -4,70 +4,99 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController {
     
-    let centerLocationButton: UIButton = {
-       let button = UIButton()
+    // MARK: Properties
+    //
+    private let disposeBag = DisposeBag()
+    private let status = CLLocationManager().authorizationStatus
+    private var locationManager: CLLocationManager?
+    private var currentLocation: CLLocationCoordinate2D?
+    var latitude: Double?
+    var longitude: Double?
+    
+    // MARK: Views
+    //
+    private let centerLocationButton: UIButton = {
+        let button = UIButton()
         button.backgroundColor = .red
         button.setTitle("접종센터로", for: .normal)
         return button
     }()
-    let myLocationButton: UIButton = {
-       let button = UIButton()
+    private let myLocationButton: UIButton = {
+        let button = UIButton()
         button.backgroundColor = .blue
         button.setTitle("현재위치로", for: .normal)
         return button
     }()
-    let mapView = MKMapView()
+    private let mapView = MKMapView()
     
-    var locationManager: CLLocationManager?
-    var currentLocation: CLLocationCoordinate2D?
-    
-    var latitude: Double?
-    var longitude: Double?
-    private let disposeBag = DisposeBag()
-    private let status = CLLocationManager().authorizationStatus
-    
+    // MARK: Life Cycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "지도"
-        self.navigationController?.navigationBar.topItem?.backButtonTitle = "Back"
-        
-        self.locationManager = CLLocationManager()
-        self.locationManager?.delegate = self
-        self.locationManager?.requestWhenInUseAuthorization()
-        
-        mapView.delegate = self
-        
+        addSubviews()
+        makeConstraints()
+        setupAttribute()
+        setupBindings()
+    }
+    
+    // MARK: functions
+    //
+    private func addSubviews() {
         view.addSubview(mapView)
-        
         mapView.addSubview(myLocationButton)
         mapView.addSubview(centerLocationButton)
-        
-        
-
+    }
+    private func makeConstraints() {
         mapView.snp.makeConstraints { make in
             make.top.bottom.left.right.equalToSuperview()
         }
         
         myLocationButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-140)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.left.equalToSuperview().offset(CommonSize.PaddingValue)
+            make.right.equalToSuperview().offset(-CommonSize.PaddingValue)
             make.height.equalTo(50)
         }
         
         centerLocationButton.snp.makeConstraints { make in
             make.top.equalTo(myLocationButton.snp.bottom).offset(10)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.left.equalToSuperview().offset(CommonSize.PaddingValue)
+            make.right.equalToSuperview().offset(-CommonSize.PaddingValue)
             make.height.equalTo(50)
         }
+    }
+    private func setupAttribute() {
+        mapView.delegate = self
+        self.locationManager = CLLocationManager()
+        self.locationManager?.delegate = self
+        self.locationManager?.requestWhenInUseAuthorization()
         
+        setupNavigationBar()
+        setupInitLocation()
+    }
+    private func setupNavigationBar() {
+        self.title = "지도"
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = "Back"
+    }
+    private func setupInitLocation() {
+        let coordinate = CLLocationCoordinate2D(latitude: 35.8714354, longitude: 128.601445) // 대구광역시
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        let pin = MKPointAnnotation()
+        pin.coordinate = coordinate
+        mapView.addAnnotation(pin)
+    }
+    private func setupBindings() {
         centerLocationButton.rx.tap
             .bind { [weak self] in
-                let coordinate = CLLocationCoordinate2D(latitude: (self?.latitude)!, longitude: (self?.longitude)!)
+                guard let latitude = self?.latitude else { return }
+                guard let longitude = self?.longitude else { return }
+                let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                 let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                 let region = MKCoordinateRegion(center: coordinate, span: span)
                 self?.mapView.setRegion(region, animated: true)
@@ -77,8 +106,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         myLocationButton.rx.tap
             .bind { [weak self] in
                 if self?.status == .authorizedAlways || self?.status == .authorizedWhenInUse {
-                    self?.currentLocation = self?.locationManager?.location?.coordinate
-                    let coordinate = CLLocationCoordinate2D(latitude: (self?.currentLocation?.latitude)!, longitude: (self?.currentLocation?.longitude)!)
+                    guard let locationManager = self?.locationManager else { return }
+                    guard let currentLocation = self?.currentLocation else { return }
+                    self?.currentLocation = locationManager.location?.coordinate
+                    let coordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
                     let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                     let region = MKCoordinateRegion(center: coordinate, span: span)
                     self?.mapView.setRegion(region, animated: true)
@@ -87,28 +118,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
             }
             .disposed(by: disposeBag)
-        
-    
-        // 처음에는 대구광역시로 세팅
-        let coordinate = CLLocationCoordinate2D(latitude: 35.8714354, longitude: 128.601445)
-        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
-        let pin = MKPointAnnotation()
-        pin.coordinate = coordinate
-        mapView.addAnnotation(pin)
     }
+}
+
+extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        //location5
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
             print("GPS 권한 설정됨")
-            self.locationManager?.startUpdatingLocation() // 중요!
+            guard let locationManager = self.locationManager else { return }
+            locationManager.startUpdatingLocation()
+            self.currentLocation = locationManager.location?.coordinate
             
-            guard let locationManager else { return }
-            currentLocation = locationManager.location?.coordinate
-            guard let currentLocation else { return }
+            guard let currentLocation = self.currentLocation else { return }
             let coordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
             let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
             let region = MKCoordinateRegion(center: coordinate, span: span)
@@ -122,7 +144,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         case .denied:
             print("GPS 권한 요청 거부됨")
         default:
-            print("GPS: Default")
+            print("GPS Default")
         }
     }
 }

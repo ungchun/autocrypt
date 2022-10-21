@@ -3,22 +3,31 @@ import RxSwift
 import RxRelay
 
 class CenterViewModel {
-    let disposeBag = DisposeBag()
     
+    let disposeBag = DisposeBag()
+    let centerObservable = BehaviorRelay<[Datum]>(value: [])
     private var pageCount = 0
     private let perPage = 10
-    var isFetch = false
     var isNext = true
-    let centerObservable = BehaviorRelay<[Datum]>(value: [])
+    var isFetch = false
     
     init() {
-        getData()
+        getCenterData()
     }
     
+    func getCenterData() {
+        pageCount += 1
+        isFetch = true
+        callAPIService(refreshCheck: false)
+    }
     
     func refreshData() {
         pageCount = 1
         isFetch = true
+        callAPIService(refreshCheck: true)
+    }
+    
+    func callAPIService(refreshCheck: Bool) {
         APIService.fetchCenterRx(pageCount: pageCount)
             .map {
                 $0.data.sorted { $0.updatedAt > $1.updatedAt }
@@ -27,34 +36,10 @@ class CenterViewModel {
                 onNext: { [weak self] repo in
                     guard let perPage = self?.perPage else { return }
                     if repo.count < perPage { self?.isNext = false }
-                    self?.centerObservable.accept(repo)
+                    refreshCheck ? self?.centerObservable.accept(repo) : self?.centerObservable.accept(((self?.centerObservable.value)!) + repo)
                     self?.isFetch = false
-                    print("?? repo \(repo)")
                 },
                 onError: { [weak self] err in
-                    print("err \(err)")
-                    self?.isFetch = false
-                }
-            )
-            .disposed(by: disposeBag)
-    }
-    
-    func getData() {
-        pageCount += 1
-        APIService.fetchCenterRx(pageCount: pageCount)
-            .map {
-                $0.data.sorted { $0.updatedAt > $1.updatedAt }
-            }
-            .subscribe(
-                onNext: { [weak self] repo in
-                    
-                    
-                    self?.centerObservable.accept(((self?.centerObservable.value)!) + repo)
-                    self?.isFetch = false
-                    print("?? repo \(repo)")
-                },
-                onError: { [weak self] err in
-                    print("err \(err)")
                     self?.isFetch = false
                 }
             )

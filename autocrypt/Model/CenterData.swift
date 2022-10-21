@@ -14,6 +14,7 @@ struct Datum: Codable {
     let lat, lng, org, phoneNumber: String
     let sido, sigungu, updatedAt, zipCode: String
 }
+
 enum CenterType: String, Codable {
     case 중앙권역 = "중앙/권역"
     case 지역 = "지역"

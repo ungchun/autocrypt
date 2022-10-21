@@ -19,6 +19,7 @@
 		BCC5BF6829015A9D0029CE04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF6729015A9D0029CE04 /* DetailViewController.swift */; };
 		BCC5BF6A29015ABB0029CE04 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5BF6929015ABB0029CE04 /* MapViewController.swift */; };
 		BCE14EEA29024AD4003237D9 /* CenterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE14EE929024AD4003237D9 /* CenterData.swift */; };
+		BCE14EED2902C944003237D9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE14EEC2902C944003237D9 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		BCC5BF6729015A9D0029CE04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BCC5BF6929015ABB0029CE04 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		BCE14EE929024AD4003237D9 /* CenterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterData.swift; sourceTree = "<group>"; };
+		BCE14EEC2902C944003237D9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,11 +92,12 @@
 		BCC5BF47290153970029CE04 /* autocrypt */ = {
 			isa = PBXGroup;
 			children = (
-				BCC5BF602901562E0029CE04 /* Repository */,
 				BCC5BF5C290154620029CE04 /* App */,
 				BCC5BF5D290154680029CE04 /* Model */,
 				BCC5BF5E2901546C0029CE04 /* View */,
 				BCC5BF5F290154710029CE04 /* ViewModel */,
+				BCC5BF602901562E0029CE04 /* Repository */,
+				BCE14EEB2902C92C003237D9 /* Resource */,
 			);
 			path = autocrypt;
 			sourceTree = "<group>";
@@ -144,6 +147,14 @@
 				BCC5BF61290156420029CE04 /* APIService.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		BCE14EEB2902C92C003237D9 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BCE14EEC2902C944003237D9 /* Constants.swift */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +276,7 @@
 				BCC5BF62290156420029CE04 /* APIService.swift in Sources */,
 				BCC5BF662901578A0029CE04 /* CenterViewModel.swift in Sources */,
 				BCE14EEA29024AD4003237D9 /* CenterData.swift in Sources */,
+				BCE14EED2902C944003237D9 /* Constants.swift in Sources */,
 				BCC5BF49290153970029CE04 /* AppDelegate.swift in Sources */,
 				BCC5BF4B290153970029CE04 /* SceneDelegate.swift in Sources */,
 				BCC5BF6829015A9D0029CE04 /* DetailViewController.swift in Sources */,

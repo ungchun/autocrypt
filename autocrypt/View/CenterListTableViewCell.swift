@@ -1,35 +1,39 @@
 import UIKit
+import SnapKit
+import RxSwift
 
 class CenterListTableViewCell: UITableViewCell {
     
-    static let reuseIdentifier = "CenterListTableViewCell"
+    static let reuseIdentifier = String(describing: CenterListTableViewCell.self)
     
+    // MARK: Views
+    //
     private let centerNameTitle: UILabel = {
         let label = UILabel()
         label.text = "센터명"
+        label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     private let facilityNameTitle: UILabel = {
         let label = UILabel()
         label.text = "건물명"
+        label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     private let addressTitle: UILabel = {
         let label = UILabel()
         label.text = "주소"
+        label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     private let updateAtTitle: UILabel = {
         let label = UILabel()
         label.text = "업데이트 시간"
+        label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     private lazy var titleStackView: UIStackView = {
@@ -43,32 +47,32 @@ class CenterListTableViewCell: UITableViewCell {
     var centerNameContent: UILabel = {
         let label = UILabel()
         label.text = "centerNameContent"
-        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
     var facilityNameContent: UILabel = {
         let label = UILabel()
         label.text = "facilityNameContent"
-        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
     var addressContent: UILabel = {
         let label = UILabel()
         label.text = "addressContent"
-        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
     var updateAtContent: UILabel = {
         let label = UILabel()
         label.text = "updateAtContent"
-        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [centerNameContent, facilityNameContent, addressContent, updateAtContent])
         stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -78,26 +82,33 @@ class CenterListTableViewCell: UITableViewCell {
         stackView.distribution = .fill
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
         return stackView
     }()
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    // MARK: init
+    //
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addSubviews()
+        makeConstraints()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-        setupLayout()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupLayout() {
-        
+    func updateUI(_ item: Datum) {
+        centerNameContent.text = item.centerName
+        facilityNameContent.text = item.facilityName
+        addressContent.text = item.address
+        updateAtContent.text = item.updatedAt
+    }
+    
+    // MARK: functions
+    //
+    private func addSubviews() {
         contentView.addSubview(allContentStackView)
-        
+    }
+    private func makeConstraints() {
         titleStackView.snp.makeConstraints { make in
             make.width.equalTo(100)
         }
@@ -107,7 +118,5 @@ class CenterListTableViewCell: UITableViewCell {
             make.right.equalToSuperview().offset(-10)
             make.top.bottom.equalToSuperview()
         }
-
-
     }
 }
