@@ -48,6 +48,15 @@ class CenterViewController: UIViewController {
                 cell.selectionStyle = .none
             }.disposed(by: disposeBag)
         
+        // tableView cell 클릭
+        tableView
+            .rx
+            .modelSelected(Datum.self)
+            .subscribe { [weak self] dummyCenterData in
+                let detailViewController = DetailViewController(detailCenterData: dummyCenterData)
+                self?.navigationController?.pushViewController(detailViewController, animated: true)
+            }.disposed(by: disposeBag)
+        
         self.title = "예방접종센터 리스트"
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -55,20 +64,3 @@ class CenterViewController: UIViewController {
         self.navigationController!.navigationBar.scrollEdgeAppearance = self.navigationController!.navigationBar.standardAppearance
     }
 }
-
-//extension CenterViewController: UITableViewDataSource, UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 5
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: CenterListTableViewCell.reuseIdentifier, for: indexPath)
-//        cell.selectionStyle = .none
-//        return cell
-//    }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let detailViewController = DetailViewController()
-//        navigationController?.pushViewController(detailViewController, animated: true)
-//        print("click \(indexPath)")
-//    }
-//}

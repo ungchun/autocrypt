@@ -2,6 +2,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var detailCenterData: Datum?
+    
     let centerNameBackView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -169,7 +171,16 @@ class DetailViewController: UIViewController {
         stackView.alignment = .center
         return stackView
     }()
-
+    
+    
+    init(detailCenterData: Datum) {
+        super.init(nibName: nil, bundle: nil)
+        self.detailCenterData = detailCenterData
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -255,6 +266,12 @@ class DetailViewController: UIViewController {
             make.right.equalToSuperview().offset(-10)
             make.height.equalTo(180)
         }
+        guard let detailCenterData else { return }
+        centerNameContent.text = detailCenterData.centerName
+        facilityNameContent.text = detailCenterData.facilityName
+        phoneNumberContent.text = detailCenterData.phoneNumber
+        updateAtContent.text = detailCenterData.updatedAt
+        addressContent.text = detailCenterData.address
         
         self.title = "센터명"
         self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
