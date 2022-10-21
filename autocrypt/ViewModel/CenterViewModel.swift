@@ -7,6 +7,7 @@ class CenterViewModel {
     
     private var pageCount = 0
     var isFetch = false
+    var isNext = true
     let centerObservable = BehaviorRelay<[Datum]>(value: [])
     
     init() {

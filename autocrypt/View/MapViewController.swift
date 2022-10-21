@@ -1,25 +1,32 @@
 import UIKit
 import MapKit
 import SnapKit
+import RxCocoa
+import RxSwift
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    let sesacLocationButton: UIButton = {
+    let centerLocationButton: UIButton = {
        let button = UIButton()
         button.backgroundColor = .red
-        button.titleLabel?.text = "접종센터로"
+        button.setTitle("접종센터로", for: .normal)
         return button
     }()
     let myLocationButton: UIButton = {
        let button = UIButton()
         button.backgroundColor = .blue
-        button.titleLabel?.text = "현재위치로"
+        button.setTitle("현재위치로", for: .normal)
         return button
     }()
     let mapView = MKMapView()
     
     var locationManager: CLLocationManager?
     var currentLocation: CLLocationCoordinate2D?
+    
+    var latitude: Double?
+    var longitude: Double?
+    private let disposeBag = DisposeBag()
+    private let status = CLLocationManager().authorizationStatus
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +43,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         view.addSubview(mapView)
         
         mapView.addSubview(myLocationButton)
-        mapView.addSubview(sesacLocationButton)
+        mapView.addSubview(centerLocationButton)
         
         
 
@@ -51,13 +58,35 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             make.height.equalTo(50)
         }
         
-        sesacLocationButton.snp.makeConstraints { make in
+        centerLocationButton.snp.makeConstraints { make in
             make.top.equalTo(myLocationButton.snp.bottom).offset(10)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(50)
         }
         
+        centerLocationButton.rx.tap
+            .bind { [weak self] in
+                let coordinate = CLLocationCoordinate2D(latitude: (self?.latitude)!, longitude: (self?.longitude)!)
+                let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                self?.mapView.setRegion(region, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        myLocationButton.rx.tap
+            .bind { [weak self] in
+                if self?.status == .authorizedAlways || self?.status == .authorizedWhenInUse {
+                    self?.currentLocation = self?.locationManager?.location?.coordinate
+                    let coordinate = CLLocationCoordinate2D(latitude: (self?.currentLocation?.latitude)!, longitude: (self?.currentLocation?.longitude)!)
+                    let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                    let region = MKCoordinateRegion(center: coordinate, span: span)
+                    self?.mapView.setRegion(region, animated: true)
+                } else {
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                }
+            }
+            .disposed(by: disposeBag)
         
     
         // 처음에는 대구광역시로 세팅

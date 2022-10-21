@@ -57,6 +57,22 @@ class CenterViewController: UIViewController {
                 self?.navigationController?.pushViewController(detailViewController, animated: true)
             }.disposed(by: disposeBag)
         
+        tableView.rx.didScroll.subscribe { [weak self] _ in
+            guard let offSetY = self?.tableView.contentOffset.y else { return }
+            guard let contentHeight = self?.tableView.contentSize.height else { return }
+            if offSetY > (contentHeight - ((self?.tableView.frame.size.height)!) - 20) {
+//                print("?? if offSetY \(offSetY)")
+//                print("?? if contentHeight \(contentHeight)")
+//                print("?? if self.centerTableView.frame.size.height \(self.centerTableView.frame.size.height)")
+                // 현재 리스트 갯수
+                // 다시 확인
+                guard let viewModel = self?.viewModel else { return }
+                if !viewModel.isFetch && viewModel.isNext {
+                    viewModel.getData()
+                }
+            }
+        }.disposed(by: disposeBag)
+        
         self.title = "예방접종센터 리스트"
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()

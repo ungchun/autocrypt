@@ -282,6 +282,8 @@ class DetailViewController: UIViewController {
     @objc private func mapTap() {
         print("mapTap")
         let mapVC = MapViewController()
+        mapVC.longitude = Double(detailCenterData!.lng)
+        mapVC.latitude = Double(detailCenterData!.lat)
         navigationController?.pushViewController(mapVC, animated: true)
     }
 }
