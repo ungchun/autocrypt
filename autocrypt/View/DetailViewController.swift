@@ -8,6 +8,12 @@ class DetailViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 10, height: 10)
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.3
         return view
     }()
     let centerNameIcon: UIImageView = {
@@ -20,19 +26,21 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "센터명"
+        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     var centerNameContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textAlignment = .center
         return label
     }()
     lazy var centerNameStackView: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [centerNameIcon, centerNameTitle, centerNameContent])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .green
         stackView.spacing = 10
         stackView.alignment = .center
         return stackView
@@ -42,6 +50,12 @@ class DetailViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 10, height: 10)
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.3
         return view
     }()
     let facilityNameIcon: UIImageView = {
@@ -54,18 +68,20 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "건물명"
+        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     var facilityNameContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textAlignment = .center
         return label
     }()
     lazy var facilityNameStackView: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [facilityNameIcon, facilityNameTitle, facilityNameContent])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .green
         stackView.spacing = 10
         stackView.alignment = .center
         return stackView
@@ -75,6 +91,12 @@ class DetailViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 10, height: 10)
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.3
         return view
     }()
     let phoneNumberIcon: UIImageView = {
@@ -87,19 +109,21 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "전화번호"
+        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     var phoneNumberContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textAlignment = .center
         return label
     }()
     lazy var phoneNumberStackView: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [phoneNumberIcon, phoneNumberTitle, phoneNumberContent])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .green
         stackView.spacing = 10
         stackView.alignment = .center
         return stackView
@@ -109,6 +133,12 @@ class DetailViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 10, height: 10)
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.3
         return view
     }()
     let updateAtIcon: UIImageView = {
@@ -121,19 +151,21 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "업데이트 시간"
+        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     var updateAtContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textAlignment = .center
         return label
     }()
     lazy var updateAtStackView: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [updateAtIcon, updateAtTitle, updateAtContent])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .green
         stackView.spacing = 10
         stackView.alignment = .center
         return stackView
@@ -143,6 +175,12 @@ class DetailViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 10, height: 10)
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.3
         return view
     }()
     let addressIcon: UIImageView = {
@@ -155,18 +193,20 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "주소"
+        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     var addressContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textAlignment = .center
         return label
     }()
     lazy var addressStackView: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [addressIcon, addressTitle, addressContent])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .green
         stackView.spacing = 10
         stackView.alignment = .center
         return stackView
@@ -184,7 +224,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .gray
+        view.backgroundColor = .lightGray
         
         centerNameContent.text = "centerNameContent"
         view.addSubview(centerNameBackView)
@@ -193,7 +233,7 @@ class DetailViewController: UIViewController {
             make.width.height.equalTo(30)
         }
         centerNameStackView.snp.makeConstraints { make in
-            make.width.height.equalTo(150)
+            make.width.equalTo(150)
             make.center.equalToSuperview()
         }
         centerNameBackView.snp.makeConstraints { make in
@@ -209,7 +249,7 @@ class DetailViewController: UIViewController {
             make.width.height.equalTo(30)
         }
         facilityNameStackView.snp.makeConstraints { make in
-            make.width.height.equalTo(150)
+            make.width.equalTo(150)
             make.center.equalToSuperview()
         }
         facilityNameBackView.snp.makeConstraints { make in
@@ -225,7 +265,7 @@ class DetailViewController: UIViewController {
             make.width.height.equalTo(30)
         }
         phoneNumberStackView.snp.makeConstraints { make in
-            make.width.height.equalTo(150)
+            make.width.equalTo(150)
             make.center.equalToSuperview()
         }
         phoneNumberBackView.snp.makeConstraints { make in
@@ -241,7 +281,7 @@ class DetailViewController: UIViewController {
             make.width.height.equalTo(30)
         }
         updateAtStackView.snp.makeConstraints { make in
-            make.width.height.equalTo(150)
+            make.width.equalTo(150)
             make.center.equalToSuperview()
         }
         updateAtBackView.snp.makeConstraints { make in
@@ -257,7 +297,7 @@ class DetailViewController: UIViewController {
             make.width.height.equalTo(30)
         }
         addressStackView.snp.makeConstraints { make in
-            make.width.height.equalTo(150)
+//            make.width.equalTo(150)
             make.center.equalToSuperview()
         }
         addressBackView.snp.makeConstraints { make in
@@ -273,7 +313,7 @@ class DetailViewController: UIViewController {
         updateAtContent.text = detailCenterData.updatedAt
         addressContent.text = detailCenterData.address
         
-        self.title = "센터명"
+        self.title = detailCenterData.centerName
         self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         let button1 = UIBarButtonItem(title: "지도", style: .plain, target: self, action: #selector(mapTap))
         self.navigationItem.rightBarButtonItem  = button1
