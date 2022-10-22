@@ -9,7 +9,6 @@ class MapViewController: UIViewController {
     // MARK: Properties
     //
     private let disposeBag = DisposeBag()
-    private let status = CLLocationManager().authorizationStatus
     private var locationManager: CLLocationManager?
     private var currentLocation: CLLocationCoordinate2D?
     var latitude: Double?
@@ -73,51 +72,56 @@ class MapViewController: UIViewController {
         self.locationManager = CLLocationManager()
         self.locationManager?.delegate = self
         self.locationManager?.requestWhenInUseAuthorization()
+        self.locationManager?.startUpdatingLocation()
         
         setupNavigationBar()
-        setupInitLocation()
+        goCenterLocation()
     }
     private func setupNavigationBar() {
         self.title = "지도"
         self.navigationController?.navigationBar.topItem?.backButtonTitle = "Back"
     }
-    private func setupInitLocation() {
-        let coordinate = CLLocationCoordinate2D(latitude: 35.8714354, longitude: 128.601445) // 대구광역시
-        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
-        let pin = MKPointAnnotation()
-        pin.coordinate = coordinate
-        mapView.addAnnotation(pin)
-    }
     private func setupBindings() {
         centerLocationButton.rx.tap
             .bind { [weak self] in
-                guard let latitude = self?.latitude else { return }
-                guard let longitude = self?.longitude else { return }
-                let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-                let region = MKCoordinateRegion(center: coordinate, span: span)
-                self?.mapView.setRegion(region, animated: true)
+                self?.goCenterLocation()
             }
             .disposed(by: disposeBag)
         
         myLocationButton.rx.tap
             .bind { [weak self] in
-                if self?.status == .authorizedAlways || self?.status == .authorizedWhenInUse {
-                    guard let locationManager = self?.locationManager else { return }
-                    guard let currentLocation = self?.currentLocation else { return }
-                    self?.currentLocation = locationManager.location?.coordinate
-                    let coordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
-                    let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-                    let region = MKCoordinateRegion(center: coordinate, span: span)
-                    self?.mapView.setRegion(region, animated: true)
+                self?.locationManager?.startUpdatingLocation()
+                
+                if CLLocationManager().authorizationStatus == .authorizedAlways || CLLocationManager().authorizationStatus == .authorizedWhenInUse {
+                    self?.goMyLocation()
                 } else {
                     UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                 }
             }
             .disposed(by: disposeBag)
+    }
+    private func goCenterLocation() {
+        guard let latitude = self.latitude else { return }
+        guard let longitude = self.longitude else { return }
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        self.mapView.setRegion(region, animated: true)
+        
+        let pin = MKPointAnnotation()
+        pin.coordinate = coordinate
+        self.mapView.addAnnotation(pin)
+    }
+    private func goMyLocation() {
+        guard let locationManager = self.locationManager else { return }
+        self.currentLocation = locationManager.location?.coordinate
+        guard let currentLocation = self.currentLocation else { return }
+        let coordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        self.mapView.setRegion(region, animated: true)
+        self.mapView.showsUserLocation = true
+        self.mapView.userTrackingMode = .follow
     }
 }
 
@@ -126,19 +130,6 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
             print("GPS 권한 설정됨")
-            guard let locationManager = self.locationManager else { return }
-            locationManager.startUpdatingLocation()
-            self.currentLocation = locationManager.location?.coordinate
-            
-            guard let currentLocation = self.currentLocation else { return }
-            let coordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
-            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-            let region = MKCoordinateRegion(center: coordinate, span: span)
-            mapView.setRegion(region, animated: true)
-            
-            let pin = MKPointAnnotation()
-            pin.coordinate = coordinate
-            mapView.addAnnotation(pin)
         case .restricted, .notDetermined:
             print("GPS 권한 설정되지 않음")
         case .denied:

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;사용자의 위치를 받아오려 합니다. 1&quot;</string>
+	<string>&quot;사용자의 위치를 받아오려 합니다.&quot;</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;사용자의 위치를 받아오려 합니다. 2&quot;</string>
+	<string>&quot;사용자의 위치를 받아오려 합니다.&quot;</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
