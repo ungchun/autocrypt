@@ -36,7 +36,13 @@ class CenterViewModel {
                 onNext: { [weak self] repo in
                     guard let perPage = self?.perPage else { return }
                     if repo.count < perPage { self?.isNext = false }
-                    refreshCheck ? self?.centerObservable.accept(repo) : self?.centerObservable.accept(((self?.centerObservable.value)!) + repo)
+
+                    refreshCheck ? self?.centerObservable.accept(repo)
+                    : self?.centerObservable.accept(((self?.centerObservable.value)! + repo)
+                        .sorted {
+                            $0.updatedAt > $1.updatedAt
+                        })
+                    
                     self?.isFetch = false
                 },
                 onError: { [weak self] err in

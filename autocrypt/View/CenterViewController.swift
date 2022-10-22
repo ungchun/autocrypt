@@ -102,8 +102,8 @@ class CenterViewController: UIViewController {
             .disposed(by: disposeBag)
         
         centerTableView.rx.modelSelected(Datum.self)
-            .subscribe { [weak self] dummyCenterData in
-                let detailViewController = DetailViewController(detailCenterData: dummyCenterData)
+            .subscribe { [weak self] centerData in
+                let detailViewController = DetailViewController(detailCenterData: centerData)
                 self?.navigationController?.pushViewController(detailViewController, animated: true)
             }
             .disposed(by: disposeBag)
@@ -112,7 +112,7 @@ class CenterViewController: UIViewController {
             .subscribe { [weak self] _ in
                 guard let offSetY = self?.centerTableView.contentOffset.y else { return }
                 guard let contentHeight = self?.centerTableView.contentSize.height else { return }
-                if offSetY > (contentHeight - ((self?.centerTableView.frame.size.height)!) - 20) {
+                if offSetY > (contentHeight - ((self?.centerTableView.frame.height)!) - 20) {
                     guard let viewModel = self?.viewModel else { return }
                     if !viewModel.isFetch && viewModel.isNext {
                         viewModel.getCenterData()

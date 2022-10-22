@@ -90,8 +90,6 @@ class MapViewController: UIViewController {
         
         myLocationButton.rx.tap
             .bind { [weak self] in
-                self?.locationManager?.startUpdatingLocation()
-                
                 if CLLocationManager().authorizationStatus == .authorizedAlways || CLLocationManager().authorizationStatus == .authorizedWhenInUse {
                     self?.goMyLocation()
                 } else {
