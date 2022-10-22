@@ -44,25 +44,25 @@ class CenterListTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    var centerNameContent: UILabel = {
+    private let centerNameContent: UILabel = {
         let label = UILabel()
         label.text = "centerNameContent"
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
-    var facilityNameContent: UILabel = {
+    private let facilityNameContent: UILabel = {
         let label = UILabel()
         label.text = "facilityNameContent"
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
-    var addressContent: UILabel = {
+    private let addressContent: UILabel = {
         let label = UILabel()
         label.text = "addressContent"
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
-    var updateAtContent: UILabel = {
+    private let updateAtContent: UILabel = {
         let label = UILabel()
         label.text = "updateAtContent"
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)

@@ -15,11 +15,11 @@ class DetailViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.layer.cornerRadius = 15
-        view.layer.shadowColor = UIColor.black.cgColor // 색깔
-        view.layer.masksToBounds = false  // 내부에 속한 요소들이 UIView 밖을 벗어날 때, 잘라낼 것인지. 그림자는 밖에 그려지는 것이므로 false 로 설정
-        view.layer.shadowOffset = CGSize(width: 10, height: 10) // 위치조정
-        view.layer.shadowRadius = 5 // 반경
-        view.layer.shadowOpacity = 0.3 // alpha값
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 10, height: 10)
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.3
         return view
     }()
     private let centerNameIcon: UIImageView = {
@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
-    private var centerNameContent: UILabel = {
+    private let centerNameContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = CommonSize.LabelNumberOfLinesValue
@@ -77,7 +77,7 @@ class DetailViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
-    private var facilityNameContent: UILabel = {
+    private let facilityNameContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = CommonSize.LabelNumberOfLinesValue
@@ -119,7 +119,7 @@ class DetailViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
-    private var phoneNumberContent: UILabel = {
+    private let phoneNumberContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = CommonSize.LabelNumberOfLinesValue
@@ -161,7 +161,7 @@ class DetailViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
-    private var updateAtContent: UILabel = {
+    private let updateAtContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = CommonSize.LabelNumberOfLinesValue
@@ -203,7 +203,7 @@ class DetailViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
         return label
     }()
-    private var addressContent: UILabel = {
+    private let addressContent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: CommonSize.LabelFontSize)
